@@ -10,7 +10,7 @@ const Node = class {
 export const GameBoard = class {
     constructor(size) {
         this.size = size
-        this.board = Array(size).fill(Node).map(() => Array(size).fill(Node))
+        this.board = Array(size).fill(null).map(() => Array(size).fill(null).map(() => new Node()));
     }
 
     placeShip(coordinates, length, rotation) {
@@ -54,11 +54,28 @@ export const GameBoard = class {
     }
 
     receiveAttack(coordinates) {
-        attackedSquare = this.board[coordinates[0]][coordinates[1]]
+        const attackedSquare = this.board[coordinates[0]][coordinates[1]]
         if (attackedSquare.type !== "water") {
             attackedSquare.type.hitBoat()
         }
 
         attackedSquare.hit = true
+    }
+
+    allShipsSunk() {
+        const allShips = []
+        this.board.forEach((arr) => {
+            arr.map((item) => {
+                if (item.type !== "water") { allShips.push(item) }
+            })
+        })
+
+        const isTrue = (currentValue) => currentValue.hit === true;
+
+        if (allShips.every((currentValue) => currentValue.hit === true) == true) {
+            return true
+        } else {
+            return false
+        }
     }
 }

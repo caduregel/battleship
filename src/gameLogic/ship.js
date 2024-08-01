@@ -9,6 +9,7 @@ export const Ship = class {
         if (this.damage < this.length) {
             this.damage = this.damage + 1
         }
+        this.isSunk()
     }
 
     isSunk() {

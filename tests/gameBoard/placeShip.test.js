@@ -29,3 +29,11 @@ test("Check if a ship placed rotating west is properly rotated", () => {
     gameBoard.placeShip([3,4], 3, 'west')
     expect(gameBoard.board[3][2].type).not.toBe("water")
 })
+
+// Test if a ship is not place across the entire column
+test("Check if a ship placed rotating west is properly rotated", () => {
+    const gameBoard = new GameBoard(10)
+
+    gameBoard.placeShip([3,4], 3, 'west')
+    expect(gameBoard.board[3][8].type).toBe("water")
+})
