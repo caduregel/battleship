@@ -1,15 +1,7 @@
-# odin-template
-Template project for The Odin Project.
+# Battleship
+The popular game, Battleship
+![Battleship image](https://theawesomer.com/photos/2020/04/battleship_neon_edition_1.jpg)
 
-## Includes:
-
-### Webpack setup
-* HTML web Plugin
-* webpack.config.js folder
-
-### Jest
-* ./tests folder
-* jest.config.js config folder
 
 By, 
 Liam Nehoray
