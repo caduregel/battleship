@@ -7,6 +7,8 @@ const Node = class {
     }
 }
 
+
+
 export const GameBoard = class {
     constructor(size) {
         this.size = size
@@ -18,27 +20,41 @@ export const GameBoard = class {
         let row = coordinates[0]
         let column = coordinates[1]
 
+
+
         switch (rotation) {
             case "north":
                 for (let i = 0; i < length; i++) {
+                    if (row < 0 || row >= this.size || column < 0 || column >= this.size) {
+                        throw new Error("Ship placement goes out of bounds");
+                    }
                     this.board[row][column].type = ship
                     row = row - 1
                 }
                 break;
             case "east":
                 for (let i = 0; i < length; i++) {
+                    if (row < 0 || row >= this.size || column < 0 || column >= this.size) {
+                        throw new Error("Ship placement goes out of bounds");
+                    }
                     this.board[row][column].type = ship
                     column = column + 1
                 }
                 break;
             case "south":
                 for (let i = 0; i < length; i++) {
+                    if (row < 0 || row >= this.size || column < 0 || column >= this.size) {
+                        throw new Error("Ship placement goes out of bounds");
+                    }
                     this.board[row][column].type = ship
                     row = row + 1
                 }
                 break;
             case "west":
                 for (let i = 0; i < length; i++) {
+                    if (row < 0 || row >= this.size || column < 0 || column >= this.size) {
+                        throw new Error("Ship placement goes out of bounds");
+                    }
                     this.board[row][column].type = ship
                     column = column - 1
                 }
@@ -46,6 +62,9 @@ export const GameBoard = class {
 
             default:
                 for (let i = 0; i < length; i++) {
+                    if (row < 0 || row >= this.size || column < 0 || column >= this.size) {
+                        throw new Error("Ship placement goes out of bounds");
+                    }
                     this.board[row][column].type = ship
                     row = row - 1
                 }
@@ -69,8 +88,6 @@ export const GameBoard = class {
                 if (item.type !== "water") { allShips.push(item) }
             })
         })
-
-        const isTrue = (currentValue) => currentValue.hit === true;
 
         if (allShips.every((currentValue) => currentValue.hit === true) == true) {
             return true

@@ -9,4 +9,4 @@ gameBoard.receiveAttack([5, 8])
 gameBoard.receiveAttack([7, 1])
 
 
-console.log(gameBoard.allShipsSunk())
+console.log(gameBoard.board)
