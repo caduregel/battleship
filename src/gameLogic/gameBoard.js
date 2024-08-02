@@ -19,8 +19,6 @@ export const GameBoard = class {
         let row = coordinates[0]
         let column = coordinates[1]
 
-
-
         switch (rotation) {
             case "north":
                 for (let i = 0; i < length; i++) {
