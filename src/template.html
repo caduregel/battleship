@@ -13,10 +13,25 @@
     <div id="play_game_container">
         <h1>Battle Ship</h1>
         <form id="play_game_form" onsubmit="">
-            <label for="number">Board Size(8-16):</label>
-            <input type="number" min="8" max="16" value="8" id="game_size">
+            <label for="number">Board Size(8-12):</label>
+            <!-- <input type="number" min="8" max="12" value="8" id="game_size"> -->
             <input type="submit" value="Start Game" id="start_game">
         </form>
+    </div>
+
+    <!-- Board container -->
+    <div style="display: none;" id="boards-container">
+        <div id="player-one-game">
+            <h2>Player One</h2>
+            <div id="player-one-board" class="board">
+            </div>
+        </div>
+        <div id="player-two-game">
+            <h2>Player Two</h2>
+            <div id="player-two-board" class="board">
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 
