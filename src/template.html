@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BattleShip</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
+
 <body>
-    
+    <!-- Start game display -->
+    <div id="play_game_container">
+        <h1>Battle Ship</h1>
+        <form id="play_game_form" onsubmit="">
+            <label for="number">Board Size(8-16):</label>
+            <input type="number" min="8" max="16" value="8" id="game_size">
+            <input type="submit" value="Start Game" id="start_game">
+        </form>
+    </div>
 </body>
+
 </html>
