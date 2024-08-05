@@ -1,5 +1,18 @@
 import { loadBoardToDOM } from "./loadBoard"
 
+export const playerTurn = {
+    turn: 1,
+    switchTurn: function(){
+        if (this.turn === 1) {
+            this.turn = 2
+        } else {
+            this.turn = 1
+        }
+        console.log(this.turn)
+    }
+}
+
+
 export const displayBoard = (player) => {
     // First populate board, later need to work on making the player be able to place ships
     const board = player.gameBoard
@@ -11,7 +24,6 @@ export const displayBoard = (player) => {
 
     board.receiveAttack([7, 0])
     board.receiveAttack([8, 0])
-    console.log(board.board[8][0])
 
     // empty board
     document.querySelector('#boards-container').style.display = 'flex'

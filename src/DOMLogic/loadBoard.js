@@ -1,3 +1,4 @@
+import { playerTurn } from "./setupGame"
 
 export const loadBoardToDOM = (id, board) => {
     const playerBoard = document.querySelector(id)
@@ -8,6 +9,20 @@ export const loadBoardToDOM = (id, board) => {
     board.board.forEach((row, rowIndex) => {
         row.forEach((node, colIndex) => {
             const cellButton = document.createElement('div')
+
+            // attackSquare(cellButton, [rowIndex, colIndex])
+
+            cellButton.addEventListener('click', () => {
+                if (playerTurn.turn === 1 && id === '#player-one-board') {
+                    board.receiveAttack([rowIndex, colIndex])
+                    loadBoardToDOM(id, board)
+                    playerTurn.switchTurn()
+                } else if (playerTurn.turn === 2 && id === '#player-two-board') {
+                    board.receiveAttack([rowIndex, colIndex])
+                    loadBoardToDOM(id, board)
+                    playerTurn.switchTurn()
+                }
+            })
 
             switch (node.type) {
                 case "water":
@@ -33,7 +48,7 @@ export const loadBoardToDOM = (id, board) => {
                         cellButton.appendChild(innerSquare)
                     }
                     break;
-                }
+            }
 
             playerBoard.appendChild(cellButton)
         })

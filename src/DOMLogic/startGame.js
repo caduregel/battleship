@@ -9,8 +9,8 @@ export const initializeGame = () => {
 
         // const size = parseInt(document.querySelector("#game_size").value);
 
-        const playerOne = new Player(false, 10, 1)
-        const computer = new Player(true, 10, 2)
+        const playerOne = new Player(false, 10, 1, true)
+        const computer = new Player(true, 10, 2, false)
 
         document.querySelector('#play_game_container').style.display = 'none'
         displayBoard(playerOne)
