@@ -1,4 +1,11 @@
+import { endGame } from "./endGame"
 import { playerTurn } from "./setupGame"
+
+function checkEndGame(board) {
+    if (board.allShipsSunk() === true) {
+        endGame()
+    }
+}
 
 export const loadBoardToDOM = (id, board) => {
     const playerBoard = document.querySelector(id)
@@ -17,10 +24,13 @@ export const loadBoardToDOM = (id, board) => {
                     board.receiveAttack([rowIndex, colIndex])
                     loadBoardToDOM(id, board)
                     playerTurn.switchTurn()
+                    checkEndGame(board)
+
                 } else if (playerTurn.turn === 2 && id === '#player-two-board') {
                     board.receiveAttack([rowIndex, colIndex])
                     loadBoardToDOM(id, board)
                     playerTurn.switchTurn()
+                    checkEndGame(board)
                 }
             })
 
