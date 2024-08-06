@@ -12,6 +12,7 @@ const Node = class {
 export const GameBoard = class {
     constructor(size) {
         this.board = Array(size).fill(null).map(() => Array(size).fill(null).map(() => new Node()));
+        this.receivedAttacks = []
     }
 
     placeShip(coordinates, length, rotation) {
@@ -74,6 +75,7 @@ export const GameBoard = class {
         if (attackedSquare.type !== "water") {
             attackedSquare.type.hitBoat()
         }
+        this.receivedAttacks.push(coordinates)
 
         attackedSquare.hit = true
     }

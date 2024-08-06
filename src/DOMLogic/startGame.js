@@ -1,4 +1,4 @@
-import { Player } from '../gameLogic/player'
+import { Game } from '../gameLogic/game'
 import { displayBoard } from './setupGame'
 
 
@@ -9,13 +9,11 @@ export const initializeGame = () => {
 
         // const size = parseInt(document.querySelector("#game_size").value);
 
-        const playerOne = new Player(false, 10, 1, true)
-        const computer = new Player(true, 10, 2, false)
+        const game = new Game()
 
         document.querySelector('#play_game_container').style.display = 'none'
-        displayBoard(playerOne)
-        displayBoard(computer)
+        displayBoard(game.playerOne, game)
+        displayBoard(game.computer, game)
 
-        return { playerOne, computer }
     })
 }

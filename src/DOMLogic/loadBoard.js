@@ -1,5 +1,5 @@
 import { endGame } from "./endGame"
-import { playerTurn } from "./setupGame"
+import { attackSquare } from "./attackSquare"
 
 function checkEndGame(board) {
     if (board.allShipsSunk() === true) {
@@ -7,7 +7,7 @@ function checkEndGame(board) {
     }
 }
 
-export const loadBoardToDOM = (id, board) => {
+export const loadBoardToDOM = (id, board, game) => {
     const playerBoard = document.querySelector(id)
 
     playerBoard.innerHTML = ''
@@ -17,22 +17,9 @@ export const loadBoardToDOM = (id, board) => {
         row.forEach((node, colIndex) => {
             const cellButton = document.createElement('div')
 
-            // attackSquare(cellButton, [rowIndex, colIndex])
+            attackSquare(cellButton, board, [rowIndex, colIndex], game, id)
 
-            cellButton.addEventListener('click', () => {
-                if (playerTurn.turn === 1 && id === '#player-one-board') {
-                    board.receiveAttack([rowIndex, colIndex])
-                    loadBoardToDOM(id, board)
-                    playerTurn.switchTurn()
-                    checkEndGame(board)
-
-                } else if (playerTurn.turn === 2 && id === '#player-two-board') {
-                    board.receiveAttack([rowIndex, colIndex])
-                    loadBoardToDOM(id, board)
-                    playerTurn.switchTurn()
-                    checkEndGame(board)
-                }
-            })
+            
 
             switch (node.type) {
                 case "water":

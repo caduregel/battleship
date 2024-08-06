@@ -16,7 +16,7 @@ export const playerTurn = {
 }
 
 
-export const displayBoard = (player) => {
+export const displayBoard = (player, game) => {
     // First populate board, later need to work on making the player be able to place ships
     const board = player.gameBoard
 
@@ -32,8 +32,8 @@ export const displayBoard = (player) => {
     document.querySelector('#boards-container').style.display = 'flex'
 
     if (player.whichPlayer == 1) {
-        loadBoardToDOM('#player-one-board', board)
+        loadBoardToDOM('#player-one-board', board, game)
     } else {
-        loadBoardToDOM('#player-two-board', board)
+        loadBoardToDOM('#player-two-board', board, game)
     }
 }
