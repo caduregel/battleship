@@ -1,9 +1,10 @@
+import { endGame } from "./endGame"
 import { loadBoardToDOM } from "./loadBoard"
 import { playerTurn } from "./setupGame"
 
-function checkEndGame(board) {
+function checkEndGame(board, sender) {
     if (board.allShipsSunk() === true) {
-        endGame()
+        endGame(winner)
     }
 }
 
@@ -21,7 +22,7 @@ export const computerAttack = (game) => {
         game.playerOne.gameBoard.receiveAttack([x, y])
         loadBoardToDOM('#player-one-board', game.playerOne.gameBoard, game)
         playerTurn.switchTurn()
-        checkEndGame(game.playerOne.gameBoard)
+        checkEndGame(game.playerOne.gameBoard, computer)
     } else {
         computerAttack(game)
     }
@@ -35,7 +36,7 @@ export const attackSquare = (button, board, coordinates, game, id) => {
                     board.receiveAttack(coordinates)
                     loadBoardToDOM('#player-two-board', board, game)
                     playerTurn.switchTurn()
-                    checkEndGame(board)
+                    checkEndGame(board, player)
 
                     computerAttack(game)
                 }
