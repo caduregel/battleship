@@ -21,9 +21,9 @@ export const displayBoard = (player, game) => {
     const board = player.gameBoard
 
     board.placeShip([7, 0], 2, 'north')
-    // board.placeShip([3, 0], 2, 'east')
-    // board.placeShip([5, 6], 4, 'west')
-    // board.placeShip([0, 0], 3, 'south')
+    board.placeShip([3, 0], 2, 'east')
+    board.placeShip([3, 4], 4, 'east')
+    board.placeShip([0, 0], 3, 'south')
 
     board.receiveAttack([7, 0])
     board.receiveAttack([8, 0])
