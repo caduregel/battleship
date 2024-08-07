@@ -19,8 +19,6 @@ export const loadBoardToDOM = (id, board, game) => {
 
             attackSquare(cellButton, board, [rowIndex, colIndex], game, id)
 
-            
-            
             switch (node.type) {
                 case "water":
                     if (node.hit == true) {
@@ -43,7 +41,8 @@ export const loadBoardToDOM = (id, board, game) => {
                         const innerSquare = document.createElement('div')
                         innerSquare.classList.add('ship')
 
-                        cellButton.appendChild(innerSquare)}    
+                        cellButton.appendChild(innerSquare)
+                    }    
                     }
                     break;
             }

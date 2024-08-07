@@ -12,8 +12,7 @@ export const initializeGame = () => {
         const game = new Game()
 
         document.querySelector('#play_game_container').style.display = 'none'
-        displayBoard(game.playerOne, game)
-        displayBoard(game.computer, game)
+        displayBoard(game)
 
     })
 }
