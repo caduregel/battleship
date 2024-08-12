@@ -7,11 +7,44 @@ const Node = class {
     }
 }
 
-const checkPlacement = (row, col, size) => {
-    if (row < 0 || row >= size || col < 0 || col >= size) {
-        return "Ship placement goes out of bounds"
+const placeShipHelper = (row, column, size, length, board, ship, direction) => {
+       // Check if the ship placement goes out of bounds based on direction
+       switch (direction) {
+        case "north":
+            if (row - (length - 1) < 0) throw new Error("Ship placement goes out of bounds");
+            break;
+        case "east":
+            if (column + (length - 1) >= size) throw new Error("Ship placement goes out of bounds");
+            break;
+        case "south":
+            if (row + (length - 1) >= size) throw new Error("Ship placement goes out of bounds");
+            break;
+        case "west":
+            if (column - (length - 1) < 0) throw new Error("Ship placement goes out of bounds");
+            break;
+        default:
+            throw new Error("Invalid direction");
     }
-    
+
+    // Place the ship on the board based on the direction
+    for (let i = 0; i < length; i++) {
+        board[row][column].type = ship;
+
+        switch (direction) {
+            case "north":
+                row--;
+                break;
+            case "east":
+                column++;
+                break;
+            case "south":
+                row++;
+                break;
+            case "west":
+                column--;
+                break;
+        }
+    }
 }
 
 export const GameBoard = class {
@@ -27,41 +60,19 @@ export const GameBoard = class {
 
         switch (rotation) {
             case "north":
-                for (let i = 0; i < length; i++) {
-                    checkPlacement(row, column, this.size)
-                    this.board[row][column].type = ship
-                    row = row - 1
-                }
+                placeShipHelper(row, column, this.size, length, this.board, ship, "north");
                 break;
             case "east":
-                for (let i = 0; i < length; i++) {
-                    checkPlacement(row, column, this.size)
-                    this.board[row][column].type = ship
-                    column = column + 1
-                }
+                placeShipHelper(row, column, this.size, length, this.board, ship, "east");
                 break;
             case "south":
-                for (let i = 0; i < length; i++) {
-                    checkPlacement(row, column, this.size)
-                    this.board[row][column].type = ship
-                    row = row + 1
-                }
+                placeShipHelper(row, column, this.size, length, this.board, ship, "south");
                 break;
             case "west":
-                for (let i = 0; i < length; i++) {
-                    checkPlacement(row, column, this.size)
-                    this.board[row][column].type = ship
-                    column = column - 1
-                }
+                placeShipHelper(row, column, this.size, length, this.board, ship, "west");
                 break;
-
             default:
-                for (let i = 0; i < length; i++) {
-                    checkPlacement(row, column, this.size)
-                    this.board[row][column].type = ship
-                    row = row - 1
-                }
-                break;
+                placeShipHelper(row, column, this.size, length, this.board, ship, "north");
         }
     }
 

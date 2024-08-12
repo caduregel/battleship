@@ -39,6 +39,26 @@ describe('PlaceShip', () => {
         expect(gameBoard.board[3][8].type).toBe("water")
     })
 
+    // Test if a ship cant be placed out of bounds
+    test('should throw an error when placing a ship out of bounds', () => {
+        const gameboard = new GameBoard(10);
+
+        expect(() => {
+            gameboard.placeShip([0, 0], 5, "north");
+        }).toThrow("Ship placement goes out of bounds");
+    });
+
+    // Test if a ship is not actually placed
+    test('should not place a ship', () => {
+        const gameboard = new GameBoard(10);
+        try {
+            gameboard.placeShip([0, 0], 3, "north")
+        } catch (e) {
+
+        }
+        expect(gameboard.board[0][0].type).toBe("water");
+    });
+
     test('should place a ship within bounds correctly', () => {
         const gameboard = new GameBoard(10);
 
@@ -81,7 +101,7 @@ describe("Test attacking function", () => {
 
     test('Test if an attacked square was actually hit', () => {
         const gameBoard = new GameBoard(10)
-        gameBoard.placeShip([3, 4], 1)
+        gameBoard.placeShip([3, 4], 1,)
         gameBoard.receiveAttack([3, 4])
         expect(gameBoard.board[3][4].hit).toBe(true)
     })
