@@ -7,9 +7,11 @@ const Node = class {
     }
 }
 
-const placeShipHelper = (row, column, size, length, board, ship, direction) => {
-       // Check if the ship placement goes out of bounds based on direction
-       switch (direction) {
+const placeShipHelper = (initialRow, initialColumn, size, length, board, ship, direction) => {
+    let row = initialRow;
+    let column = initialColumn;
+    // Check if the ship placement goes out of bounds based on direction
+    switch (direction) {
         case "north":
             if (row - (length - 1) < 0) throw new Error("Ship placement goes out of bounds");
             break;
@@ -25,6 +27,31 @@ const placeShipHelper = (row, column, size, length, board, ship, direction) => {
         default:
             throw new Error("Invalid direction");
     }
+
+    for (let i = 0; i < length; i++) {
+        if (board[row][column].type !== "water") {
+            throw new Error("Ship placement overlaps with another ship");
+        }
+
+        // Adjust row and column based on the direction
+        switch (direction) {
+            case "north":
+                row--;
+                break;
+            case "east":
+                column++;
+                break;
+            case "south":
+                row++;
+                break;
+            case "west":
+                column--;
+                break;
+        }
+    }
+
+    row = initialRow;
+    column = initialColumn;
 
     // Place the ship on the board based on the direction
     for (let i = 0; i < length; i++) {
