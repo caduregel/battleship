@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BattleShip</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+<script defer src="index.bundle.js"></script></head>
+
+<body>
+    <!-- Start game display -->
+    <div id="play_game_container">
+        <h1>Battle Ship</h1>
+        <form id="play_game_form" onsubmit="">
+            <label for="number">Board Size: 10</label>
+            <!-- <input type="number" min="8" max="12" value="8" id="game_size"> -->
+            <input type="submit" value="Start Game" id="start_game">
+        </form>
+    </div>
+
+    <!-- Board container -->
+    <div style="display: none;" id="boards-container">
+        <div id="player-one-game">
+            <h2>Player One</h2>
+            
+            <div id="player-one-board" class="board">
+            </div>
+            <h3 id="error_display"></h3>
+        </div>
+        <div id="player-two-game">
+            <h2>Player Two</h2>
+            <div id="player-two-board" class="board">
+            </div>
+        </div>
+    </div>
+    <!-- End Game Screen -->
+    <h1 id="end_game_screen" style="display: none;"></h1>
+</body>
+
+</html>
